@@ -1,0 +1,60 @@
+# Operating system files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editor and IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Logs
+*.log
+logs/
+
+# Dependency and build caches
+node_modules/
+.pnpm-store/
+.npm/
+.yarn/
+
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+venv/
+
+# Generated build output
+dist/
+build/
+out/
+target/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Local AI/tooling state
+.agents/
+.codex/
+.cursor/
+.windsurf/
+
+# Keep project documentation and generated workflow artifacts versionable.
+!docs/
+!agents/
