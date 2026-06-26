@@ -61,8 +61,19 @@ Genera docs/workflow.md con questa struttura
    - Aggiornare docs/design.md solo se cambiano UI/UX o design system.
    - Aggiornare docs/tasks.md solo se cambiano roadmap, stato, priorità o dipendenze.
    - Aggiornare docs/decisions.md per decisioni significative.
+   - Aggiornare README.md quando cambiano setup, prerequisiti, comandi di avvio/test/build, configurazione richiesta, modalità d'uso, funzionalità principali, stato MVP o informazioni necessarie a un nuovo lettore.
+   - Mantenere README.md come guida d'ingresso sintetica per umani: operativo, leggibile, non duplicativo rispetto a docs/.
+   - Rimandare a docs/ per requisiti, architettura, sicurezza, task, decisioni e workflow dettagliati.
 
-7. General Execution Rules
+7. Code Documentation Rules
+   - Applicare la code documentation policy definita in docs/architecture.md.
+   - Quando una classe applicativa principale è completata o stabilizzata, verificare se serve una breve Javadoc in inglese.
+   - Quando un flusso applicativo è completato, rivedere entry point e componenti attraversati per aggiungere, aggiornare o rimuovere commenti dove utile.
+   - Commentare solo logica non immediata, vincoli di dominio, trade-off, assunzioni o comportamenti sorprendenti.
+   - Evitare commenti banali, descrizioni di getter/setter, assegnazioni o contenuti già evidenti dai nomi.
+   - Preferire nomi chiari a commenti esplicativi quando possibile.
+
+8. General Execution Rules
    - Limitare lo scope alla richiesta o al task corrente.
    - Preferire semplicità, leggibilità, manutenibilità e testabilità.
    - Evitare overengineering, duplicazioni, dipendenze inutili e funzionalità non richieste.
@@ -97,7 +108,7 @@ Contenuto richiesto degli agenti
 
 orchestrator-agent.md
 - Mission: coordinare l'intero Agent-Driven Workflow.
-- Responsibilities: analizzare richieste, leggere documenti, selezionare agenti, ordinare attività, risolvere conflitti, coordinare test/review/documentazione, produrre risultato finale.
+- Responsibilities: analizzare richieste, leggere documenti, selezionare agenti, ordinare attività, risolvere conflitti, coordinare test/review/documentazione, aggiornare README.md solo quando utile, produrre risultato finale.
 - Read: tutti i documenti in docs/ e agents/ necessari.
 - Write: docs/workflow.md, docs/decisions.md quando necessario, aggiornamenti documentali necessari, output finale.
 - Forbidden Actions: duplicare docs/, bypassare agenti necessari, introdurre scope non richiesto, ignorare incoerenze documentali.
@@ -118,10 +129,10 @@ architecture-agent.md
 
 implementation-agent.md
 - Mission: implementare modifiche nello scope minimo necessario.
-- Responsibilities: modificare codice/configurazione, rispettare architecture/security/tasks/design, mantenere semplicità e testabilità.
+- Responsibilities: modificare codice/configurazione, rispettare architecture/security/tasks/design, mantenere semplicità, testabilità e documentazione essenziale del codice dove rilevante.
 - Read: docs/requirements.md, docs/architecture.md, docs/security.md, docs/tasks.md, docs/design.md se rilevante, docs/decisions.md se presente.
 - Write: codice e configurazione necessari; docs/tasks.md solo per stato o dipendenze se richiesto dal workflow.
-- Forbidden Actions: cambiare comportamento non richiesto, ignorare test, introdurre dipendenze inutili, aggiornare documenti non pertinenti.
+- Forbidden Actions: cambiare comportamento non richiesto, ignorare test, introdurre dipendenze inutili, aggiungere commenti banali, aggiornare documenti non pertinenti.
 
 testing-agent.md
 - Mission: verificare correttezza e regressioni.
@@ -139,7 +150,7 @@ security-agent.md
 
 review-agent.md
 - Mission: revisionare coerenza, qualità e rischi prima della chiusura.
-- Responsibilities: cercare bug, regressioni, incoerenze con docs/, test mancanti, rischi di sicurezza, overengineering e dipendenze inutili.
+- Responsibilities: cercare bug, regressioni, incoerenze con docs/, test mancanti, rischi di sicurezza, overengineering, dipendenze inutili, README.md obsoleto quando impatta l'ingresso al progetto, e commenti mancanti o superflui rispetto alla code documentation policy.
 - Read: documenti docs/ rilevanti, modifiche prodotte, report test, decisioni.
 - Write: finding ordinati per severità e raccomandazione finale.
 - Forbidden Actions: riscrivere codice senza richiesta, duplicare analisi già presenti, approvare modifiche non verificate.

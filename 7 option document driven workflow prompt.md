@@ -51,33 +51,44 @@ Struttura richiesta di docs/workflow.md
    - Aggiornare docs/design.md solo se cambiano UI/UX, componenti, accessibilità, layout o design system.
    - Aggiornare docs/tasks.md solo se cambiano roadmap, stato, priorità o dipendenze.
    - Aggiornare docs/decisions.md per decisioni significative.
+   - Aggiornare README.md quando cambiano setup, prerequisiti, comandi di avvio/test/build, configurazione richiesta, modalità d'uso, funzionalità principali, stato MVP o informazioni necessarie a un nuovo lettore.
+   - Mantenere README.md come guida d'ingresso sintetica per umani: operativo, leggibile, non duplicativo rispetto a docs/.
+   - Rimandare a docs/ per requisiti, architettura, sicurezza, task, decisioni e workflow dettagliati.
    - Non aggiornare documenti senza necessità reale.
 
-5. Testing Workflow
+5. Code Documentation Workflow
+   - Applicare la code documentation policy definita in docs/architecture.md.
+   - Quando una classe applicativa principale è completata o stabilizzata, verificare se serve una breve Javadoc in inglese.
+   - Quando un flusso applicativo è completato, rivedere entry point e componenti attraversati per aggiungere, aggiornare o rimuovere commenti dove utile.
+   - Commentare solo logica non immediata, vincoli di dominio, trade-off, assunzioni o comportamenti sorprendenti.
+   - Evitare commenti banali, descrizioni di getter/setter, assegnazioni o contenuti già evidenti dai nomi.
+   - Preferire nomi chiari a commenti esplicativi quando possibile.
+
+6. Testing Workflow
    - Scrivere unit test per logica applicativa e regole di dominio.
    - Scrivere integration test per confini tra componenti, persistenza, API o integrazioni esterne.
    - Scrivere regression test per bugfix quando tecnicamente possibile.
    - Eseguire test rilevanti; se non eseguibili, indicare motivo, rischio residuo e comando consigliato.
 
-6. Refactoring Workflow
+7. Refactoring Workflow
    - Consentire refactoring solo se motivato da task, bug, debito tecnico, sicurezza o chiarezza necessaria.
    - Non mescolare refactoring non richiesto con modifiche funzionali.
    - Preservare comportamento pubblico e compatibilità salvo requisito esplicito.
 
-7. Security Workflow
+8. Security Workflow
    - Derivare regole operative da docs/security.md.
    - Non introdurre segreti nel codice, nei test, nella configurazione versionata o nei log.
    - Validare input esterni e gestire errori senza esporre dettagli interni.
    - Applicare least privilege e misure proporzionate al rischio.
    - Non disabilitare controlli senza decisione documentata.
 
-8. Frontend Workflow
+9. Frontend Workflow
    - Applicare solo se docs/design.md esiste o se il progetto prevede UI/frontend.
    - Rispettare design system, componenti, accessibilità, responsive design e pattern UX.
    - Non introdurre nuovi colori, font, componenti o pattern senza aggiornare docs/design.md.
    - Se docs/design.md non esiste e serve UI, proporne la generazione prima dell'implementazione.
 
-9. General Behaviour
+10. General Behaviour
    - Agire in modo deterministico e document-driven.
    - Dichiarare assunzioni solo quando necessarie.
    - Chiedere chiarimenti solo se l'ambiguità blocca una modifica corretta.

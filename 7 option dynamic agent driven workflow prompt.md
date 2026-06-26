@@ -67,9 +67,20 @@ Genera docs/workflow.md con questa struttura
    - Aggiornare docs/tasks.md solo se cambiano task, stato, priorità, dipendenze o roadmap.
    - Aggiornare docs/decisions.md per decisioni significative su prodotto, architettura, sicurezza, processo o nuovi agenti.
    - Aggiornare altri documenti solo secondo la loro responsabilità specifica.
+   - Aggiornare README.md quando cambiano setup, prerequisiti, comandi di avvio/test/build, configurazione richiesta, modalità d'uso, funzionalità principali, stato MVP o informazioni necessarie a un nuovo lettore.
+   - Mantenere README.md come guida d'ingresso sintetica per umani: operativo, leggibile, non duplicativo rispetto a docs/.
+   - Rimandare a docs/ per requisiti, architettura, sicurezza, task, decisioni e workflow dettagliati.
    - Se i documenti sono incoerenti, proporre correzione documentale minima prima dell'implementazione.
 
-7. Execution Workflow
+7. Code Documentation Workflow
+   - Applicare la code documentation policy definita in docs/architecture.md.
+   - Quando una classe applicativa principale è completata o stabilizzata, verificare se serve una breve Javadoc in inglese.
+   - Quando un flusso applicativo è completato, rivedere entry point e componenti attraversati per aggiungere, aggiornare o rimuovere commenti dove utile.
+   - Commentare solo logica non immediata, vincoli di dominio, trade-off, assunzioni o comportamenti sorprendenti.
+   - Evitare commenti banali, descrizioni di getter/setter, assegnazioni o contenuti già evidenti dai nomi.
+   - Preferire nomi chiari a commenti esplicativi quando possibile.
+
+8. Execution Workflow
    - Startup: leggere documentazione rilevante.
    - Context: produrre sintesi minima e vincoli applicabili.
    - Agent Selection: usare agenti esistenti o coinvolgere Agent Factory.
@@ -79,14 +90,14 @@ Genera docs/workflow.md con questa struttura
    - Review: verificare coerenza, regressioni, duplicazioni, overengineering e necessità degli agenti creati.
    - Closure: riportare risultato, test, documenti aggiornati, agenti creati e rischi residui.
 
-8. Anti-Proliferation Rules
+9. Anti-Proliferation Rules
    - Preferire agenti esistenti.
    - Preferire istruzioni nel workflow rispetto a nuovi agenti se il bisogno non è ricorrente.
    - Eliminare o non creare agenti ridondanti.
    - Ogni agente dinamico deve avere responsabilità distinta e riutilizzabile.
    - Motivare la creazione di un agente e registrarla in docs/decisions.md quando significativa.
 
-9. General Execution Rules
+10. General Execution Rules
    - Limitare lo scope alla richiesta o al task corrente.
    - Preferire semplicità, leggibilità, manutenibilità e testabilità.
    - Evitare overengineering, duplicazioni, dipendenze inutili e funzionalità non richieste.
@@ -121,7 +132,7 @@ Contenuto richiesto degli agenti minimi
 
 orchestrator-agent.md
 - Mission: coordinare l'intero Dynamic Agent-Driven Workflow.
-- Responsibilities: ricevere richiesta, leggere documentazione tramite Context Agent, capire task/scope/rischi/dipendenze, decidere agenti esistenti o Agent Factory, coordinare esecuzione/test/security/review, proporre aggiornamenti documentali.
+- Responsibilities: ricevere richiesta, leggere documentazione tramite Context Agent, capire task/scope/rischi/dipendenze, decidere agenti esistenti o Agent Factory, coordinare esecuzione/test/security/review/code documentation, proporre aggiornamenti documentali e README.md solo quando utile.
 - Read: docs/requirements.md, docs/architecture.md, docs/security.md, docs/tasks.md, docs/design.md se presente, docs/decisions.md se presente, agents/ rilevanti.
 - Write: docs/workflow.md se cambia workflow, docs/tasks.md se cambia roadmap/stato/dipendenze, docs/decisions.md per decisioni significative, output finale.
 - Forbidden Actions: bypassare documentazione, creare agenti senza Agent Factory, duplicare docs/, introdurre scope non richiesto.
@@ -149,7 +160,7 @@ security-agent.md
 
 review-agent.md
 - Mission: revisionare risultato finale e agenti creati.
-- Responsibilities: verificare coerenza con requirements/architecture/security/tasks, individuare bug/regressioni/duplicazioni/overengineering, verificare test/rischi residui, validare necessità degli agenti creati.
+- Responsibilities: verificare coerenza con requirements/architecture/security/tasks, individuare bug/regressioni/duplicazioni/overengineering, verificare test/rischi residui, validare necessità degli agenti creati, rilevare README.md obsoleto quando impatta l'ingresso al progetto e commenti mancanti o superflui rispetto alla code documentation policy.
 - Read: documenti docs/ rilevanti, agenti coinvolti o creati, modifiche prodotte, report test e security finding.
 - Write: finding ordinati per severità; raccomandazione finale.
 - Forbidden Actions: approvare modifiche non verificate, ignorare agenti ridondanti, riscrivere codice senza richiesta, duplicare analisi già presenti.
