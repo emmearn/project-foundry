@@ -13,7 +13,7 @@ Struttura richiesta
 3. Autenticazione e sessioni: meccanismi, token, password policy, session management; se non richiesti, dichiararlo.
 4. Autorizzazione: ruoli, permessi e controlli API/business.
 5. Input validation e output handling: whitelist, limiti, sanitizzazione, mascheramento, nessuno stacktrace all'utente.
-6. Logging ed error handling: livelli, correlation id, messaggi sicuri e standardizzati.
+6. Logging ed error handling: livelli, correlation id quando utile, messaggi sicuri e standardizzati, masking/redaction, divieto di loggare segreti, token, password, PII, payload sensibili, prompt/input utente o output AI sensibili.
 7. Comunicazioni: HTTPS/TLS, certificati, divieto di protocolli insicuri se c'è rete.
 8. Database e filesystem: query parametrizzate, privilegi minimi, backup/retention se rilevanti, path validation.
 9. API e integrazioni: rate limit, timeout, retry controllati, validazione request/response se applicabili.
@@ -27,5 +27,6 @@ Regole
 - Non generare codice, requirements, architecture, design, tasks, workflow o agents.
 - Non duplicare scelte tecniche di docs/architecture.md: trasformale solo in vincoli di sicurezza.
 - Applica solo misure giustificate; evita overengineering.
+- La logging policy deve favorire diagnosi e audit tecnico senza aumentare il rischio di esposizione dati o creare rumore operativo.
 - Usa riferimenti agli altri file solo per contesto o tracciabilità.
 - Indica decisioni da registrare in docs/decisions.md quando significative.

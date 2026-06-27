@@ -13,7 +13,7 @@ Struttura richiesta
 3. Milestone incrementali: ogni milestone lascia il sistema funzionante.
 4. Stato avanzamento: tasks.md deve essere aggiornabile durante il progetto e deve indicare chiaramente quali task sono da fare, in corso, completati, bloccati o rimandati.
 5. Task: attività piccole, indipendenti, delegabili e completabili in meno di mezza giornata.
-6. Formato task: ID TASK-001, stato TODO/IN_PROGRESS/DONE/BLOCKED/DEFERRED, descrizione, priorità MUST/SHOULD/COULD, dipendenze, requisiti collegati, documenti di riferimento, criteri di completamento, verifica/test, documentazione del codice essenziale e README.md aggiornati dove rilevante.
+6. Formato task: ID TASK-001, stato TODO/IN_PROGRESS/DONE/BLOCKED/DEFERRED, descrizione, priorità MUST/SHOULD/COULD, dipendenze, requisiti collegati, documenti di riferimento, criteri di completamento, verifica/test, logging essenziale, documentazione del codice essenziale e README.md aggiornati dove rilevante.
 7. Regole di aggiornamento: quando un task avanza, aggiornare il suo stato; quando viene completato, segnare DONE solo se criteri di completamento e verifica sono soddisfatti; se è bloccato, indicare il motivo minimo; se è rinviato, segnare DEFERRED e motivare brevemente.
 8. Vertical slices: preferire incrementi funzionali completi rispetto a layer completi non utilizzabili.
 9. Testing: unit, integration e UI test quando rilevanti.
@@ -30,6 +30,7 @@ Regole
 - Non introdurre funzionalità non richieste.
 - Non duplicare contenuti degli altri documenti.
 - Ogni task deve avere criteri oggettivi di completamento e verifica.
+- I criteri di completamento devono includere logging essenziale quando il task introduce flussi, integrazioni, decisioni operative o failure mode rilevanti.
 - I criteri di completamento devono includere documentazione del codice essenziale aggiornata dove rilevante.
 - I criteri di completamento devono includere README.md aggiornato quando cambiano setup, comandi, configurazione, modalità d'uso, funzionalità principali, stato MVP o informazioni necessarie a un nuovo lettore.
 - Ogni task deve avere uno stato esplicito e aggiornabile.

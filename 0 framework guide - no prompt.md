@@ -33,7 +33,7 @@ vision.md
    ↓
 6 tasks prompt
    ↓
-7 scelta del workflow
+7 workflow prompt
 ```
 
 ## Dipendenze
@@ -70,50 +70,30 @@ vision.md
 - usa docs/design.md se presente
 - genera docs/tasks.md
 
-7 document driven workflow prompt
+7 workflow prompt
 - usa tutti i documenti precedenti
 - genera docs/workflow.md per il Document-Driven Workflow
-
-7 agent driven workflow prompt
-- usa tutti i documenti precedenti
-- genera docs/workflow.md e agents/ per l'Agent-Driven Workflow
-
-7tris dynamic agent driven workflow prompt
-- usa tutti i documenti precedenti
-- genera docs/workflow.md e agents/ per il Dynamic Agent-Driven Workflow
 ```
 
-## Biforcazione Al Punto 7
+## Punto 7
 
-I prompt da 1 a 6 sono comuni a tutti gli approcci.
+I prompt da 1 a 6 generano la documentazione di progetto.
 
-Al punto 7 scegli ed esegui un solo workflow:
+Il punto 7 genera sempre il Document-Driven Workflow:
 
 ```text
-7 document driven workflow prompt
-7 agent driven workflow prompt
-7tris dynamic agent driven workflow prompt
+7 workflow prompt
 ```
 
-Non eseguire tutti i prompt 7 nello stesso progetto, perché generano alternative diverse per `docs/workflow.md`.
+Il framework non genera agenti di sviluppo persistenti. L'IA usa `docs/workflow.md` e i documenti in `docs/` come guida operativa.
 
-## Scelta Del Workflow
+## Workflow
 
 Document-Driven Workflow:
-- per progetti semplici o medi;
 - usa solo documentazione e regole operative compatte;
-- non crea agenti persistenti.
-
-Agent-Driven Workflow:
-- per progetti più complessi;
-- crea agenti statici specializzati coordinati da un orchestratore;
-- mantiene la conoscenza di dominio in `docs/`.
-
-Dynamic Agent-Driven Workflow:
-- per progetti sperimentali o avanzati;
-- crea un set minimo di agenti;
-- consente la creazione di agenti specializzati a runtime quando giustificato;
-- adatto a PoC con Spring AI o sistemi agentici dinamici.
+- mantiene `docs/` come unica fonte di verità;
+- non crea agenti di sviluppo persistenti;
+- consente all'IA di assumere dinamicamente il ruolo necessario durante il lavoro.
 
 ## Output Finali Possibili
 
@@ -125,10 +105,8 @@ docs/
 ├── design.md              # solo se serve UI/UX/frontend
 ├── security.md
 ├── tasks.md
-├── workflow.md            # generato da uno solo dei prompt 7
+├── workflow.md            # generato dal prompt 7
 └── decisions.md           # creato o aggiornato solo quando serve
-
-agents/                   # solo per workflow agent-driven
 ```
 
 ## Regole Di Isolamento
@@ -140,7 +118,6 @@ agents/                   # solo per workflow agent-driven
 - `security.md` definisce guardrail, policy e rischi.
 - `tasks.md` definisce roadmap incrementale e ordine di implementazione.
 - `workflow.md` definisce come l'IA deve lavorare.
-- `agents/` definisce ruoli operativi solo negli approcci agent-driven.
 - `decisions.md` traccia solo decisioni significative.
 
 ## Regole Generali

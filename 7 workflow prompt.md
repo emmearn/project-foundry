@@ -1,4 +1,4 @@
-Prompt per generare docs/workflow.md - Document-Driven Workflow
+Prompt per generare docs/workflow.md
 
 Agisci come AI Coding Workflow Architect.
 
@@ -8,9 +8,8 @@ Scopo del documento
 Definire solo il comportamento operativo dell'IA nel Document-Driven Workflow. Non generare requisiti, architettura, sicurezza, roadmap, agents o prompt riutilizzabili.
 
 Contesto
-- Questo prompt è una delle tre alternative del punto 7.
-- Usalo solo se l'utente sceglie Document-Driven Workflow.
-- Non generare Agent-Driven Workflow o Dynamic Agent-Driven Workflow.
+- Questo prompt è il punto 7 del framework.
+- Genera sempre il Document-Driven Workflow.
 - Non creare agents/.
 
 Principi vincolanti
@@ -64,31 +63,39 @@ Struttura richiesta di docs/workflow.md
    - Evitare commenti banali, descrizioni di getter/setter, assegnazioni o contenuti già evidenti dai nomi.
    - Preferire nomi chiari a commenti esplicativi quando possibile.
 
-6. Testing Workflow
+6. Logging Workflow
+   - Applicare la logging policy definita in docs/architecture.md e i vincoli di sicurezza definiti in docs/security.md.
+   - Quando un flusso applicativo è completato, rivedere entry point, confini del sistema, integrazioni, decisioni operative ed errori gestibili per verificare se servono log.
+   - Aggiungere log solo se aiutano diagnosi, audit tecnico, troubleshooting o comprensione dello stato operativo.
+   - Usare livelli coerenti con lo stack e correlation/request id per flussi multi-step quando utile.
+   - Non loggare segreti, token, password, PII, payload sensibili, prompt/input utente o output AI sensibili.
+   - Rimuovere log temporanei, rumorosi, duplicati o banali.
+
+7. Testing Workflow
    - Scrivere unit test per logica applicativa e regole di dominio.
    - Scrivere integration test per confini tra componenti, persistenza, API o integrazioni esterne.
    - Scrivere regression test per bugfix quando tecnicamente possibile.
    - Eseguire test rilevanti; se non eseguibili, indicare motivo, rischio residuo e comando consigliato.
 
-7. Refactoring Workflow
+8. Refactoring Workflow
    - Consentire refactoring solo se motivato da task, bug, debito tecnico, sicurezza o chiarezza necessaria.
    - Non mescolare refactoring non richiesto con modifiche funzionali.
    - Preservare comportamento pubblico e compatibilità salvo requisito esplicito.
 
-8. Security Workflow
+9. Security Workflow
    - Derivare regole operative da docs/security.md.
    - Non introdurre segreti nel codice, nei test, nella configurazione versionata o nei log.
    - Validare input esterni e gestire errori senza esporre dettagli interni.
    - Applicare least privilege e misure proporzionate al rischio.
    - Non disabilitare controlli senza decisione documentata.
 
-9. Frontend Workflow
+10. Frontend Workflow
    - Applicare solo se docs/design.md esiste o se il progetto prevede UI/frontend.
    - Rispettare design system, componenti, accessibilità, responsive design e pattern UX.
    - Non introdurre nuovi colori, font, componenti o pattern senza aggiornare docs/design.md.
    - Se docs/design.md non esiste e serve UI, proporne la generazione prima dell'implementazione.
 
-10. General Behaviour
+11. General Behaviour
    - Agire in modo deterministico e document-driven.
    - Dichiarare assunzioni solo quando necessarie.
    - Chiedere chiarimenti solo se l'ambiguità blocca una modifica corretta.

@@ -57,4 +57,3 @@ temp/
 
 # Keep project documentation and generated workflow artifacts versionable.
 !docs/
-!agents/

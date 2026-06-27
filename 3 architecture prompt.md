@@ -15,14 +15,15 @@ Struttura richiesta
 5. Componenti principali: responsabilità e requisiti collegati quando utile.
 6. Modello dati: entità e relazioni al livello necessario.
 7. Flussi applicativi: sequenze principali con diagrammi testuali se utili.
-8. Error handling e logging: regole tecniche senza duplicare docs/security.md.
+8. Error handling e logging: regole tecniche, livelli, punti di osservabilità e correlation/request id se utili, senza duplicare docs/security.md.
 9. Configurazione: proprietà, variabili d'ambiente e gestione segreti rimandando i dettagli a docs/security.md.
 10. Performance e scalabilità: solo misure giustificate dai requisiti.
 11. Testing strategy: unit, integration, mock e criteri per la logica principale.
 12. Convenzioni di sviluppo: naming, pattern, dipendenze, regole di codifica e policy essenziale di documentazione del codice.
 13. Code documentation policy: commenti in inglese; Javadoc breve sulle classi applicative principali; commenti solo su metodi o passaggi con logica non immediata, vincoli di dominio, trade-off o assunzioni non ovvie; evitare commenti banali o duplicativi rispetto a nomi di classi, metodi e variabili.
-14. README guidance: indicare le informazioni operative che dovrebbero emergere in README.md quando rilevanti per un nuovo lettore: scopo del progetto, stack, prerequisiti, comandi di avvio/test/build, configurazione essenziale senza segreti, struttura progetto, entry point principali e rimandi a docs/.
-15. Decisioni architetturali: decisione, motivazione, alternative, impatto; indicare cosa registrare in docs/decisions.md.
+14. Logging policy: definire log proporzionati e utili alla diagnosi; usare livelli coerenti con lo stack; loggare eventi applicativi significativi, confini del sistema, integrazioni esterne, decisioni operative rilevanti ed errori gestibili; evitare log rumorosi, duplicati, temporanei o descrizioni banali tipo ingresso/uscita metodo; prevedere correlation/request id per flussi multi-step, API o operazioni asincrone quando utile.
+15. README guidance: indicare le informazioni operative che dovrebbero emergere in README.md quando rilevanti per un nuovo lettore: scopo del progetto, stack, prerequisiti, comandi di avvio/test/build, configurazione essenziale senza segreti, struttura progetto, entry point principali e rimandi a docs/.
+16. Decisioni architetturali: decisione, motivazione, alternative, impatto; indicare cosa registrare in docs/decisions.md.
 
 Regole
 - Segui rigorosamente docs/requirements.md.
