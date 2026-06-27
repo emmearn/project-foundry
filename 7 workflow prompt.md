@@ -38,6 +38,7 @@ Struttura richiesta di docs/workflow.md
 3. Development Workflow
    - Rispettare requirements, architecture, security e tasks.
    - Implementare solo ciò che serve alla richiesta o al task corrente.
+   - Quando la richiesta è generica o riguarda avanzamento progetto, selezionare sempre il primo task TODO eseguibile della fase corrente in docs/tasks.md; ogni salto richiede motivazione esplicita prima di modificare codice.
    - Preferire semplicità, leggibilità, manutenibilità e testabilità.
    - Evitare overengineering, duplicazioni, dipendenze inutili e funzionalità non richieste.
    - Non cambiare API, modelli o comportamento senza requisito, task o decisione coerente.
