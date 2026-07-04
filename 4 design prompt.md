@@ -30,6 +30,7 @@ Struttura richiesta
 6. Icone e immagini: stile, uso, dimensioni e coerenza.
 
 7. UX guidelines: form, validazione, feedback, loading, empty state, errori, conferme distruttive.
+   - Tutti i testi UI (label, placeholder, messaggi di errore/successo/warning, microcopy, testi di bottoni, empty state) devono essere corretti dal punto di vista ortografico e grammaticale nella lingua target del progetto: nessun refuso, nessun errore di battitura, nessuna incoerenza terminologica tra componenti equivalenti.
 
 8. Accessibilità ed ergonomia (sezione a controllo rigoroso):
    - Contrasto: rimanda ai valori definiti in sezione 3, applicabili a tutti i componenti senza eccezioni.
@@ -43,12 +44,13 @@ Struttura richiesta
 
 10. Consistenza: Do/Don't per uniformità.
 
-11. Regole di implementazione UI: riuso componenti; nuovi colori/font/stili solo aggiornando docs/design.md, con verifica obbligatoria del contrasto prima dell'aggiunta di qualsiasi nuovo token colore.
+11. Regole di implementazione UI: riuso componenti; nuovi colori/font/stili solo aggiornando docs/design.md, con verifica obbligatoria del contrasto prima dell'aggiunta di qualsiasi nuovo token colore. Ogni nuovo testo UI introdotto va sottoposto a controllo ortografico/grammaticale prima dell'inserimento.
 
 Regole
 - Usa requirements e architecture solo come contesto.
 - Non generare codice, mockup, architecture, security, tasks, workflow o agents.
 - Ogni valore di colore, dimensione o soglia deve essere un numero o HEX concreto, mai una descrizione vaga (es. no "contrasto adeguato", sì "contrasto minimo 4.5:1").
+- Prima di finalizzare il documento, esegui un controllo ortografico e grammaticale su tutti i testi presenti (inclusi i testi di esempio nei componenti e nelle UX guidelines): correggi refusi, errori di battitura, concordanze errate e incoerenze terminologiche.
 - Questo file è la fonte di verità per UI/UX e design system.
 - Non duplicare contenuti di altri documenti.
 - Usa riferimenti agli altri file solo quando necessari.
