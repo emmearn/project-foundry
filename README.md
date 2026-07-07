@@ -14,6 +14,7 @@ Il repository non contiene codice applicativo: contiene una sequenza ordinata di
 - [Dipendenze tra prompt](#dipendenze-tra-prompt)
 - [Output generati](#output-generati)
 - [Document-Driven Workflow](#document-driven-workflow)
+- [Avvio dello sviluppo](#avvio-dello-sviluppo)
 - [Decisioni di progetto](#decisioni-di-progetto)
 - [Regole di isolamento](#regole-di-isolamento)
 - [Uso rapido](#uso-rapido)
@@ -58,10 +59,15 @@ Usa italiano e UTF-8 salvo richiesta esplicita diversa.
 5 security prompt.md
 6 tasks prompt.md
 7 workflow prompt.md
+8 activation prompt - soft.md
+8 activation prompt - balanced.md
+8 activation prompt - autonomous.md
 README.md
 ```
 
 I file numerati da `1` a `7` vanno usati in ordine. Il prompt `4.1 optional design logo prompt.md` è opzionale e va eseguito subito dopo `4 design prompt.md` quando il progetto richiede un logo, brand asset o una identità visiva.
+
+I tre prompt `8 activation prompt` non generano nuovi documenti: servono ad avviare lo sviluppo reale con un coding agent dopo la conclusione della fase di progettazione. Va scelto un solo prompt `8`, in base al livello di autonomia desiderato.
 
 ## Input iniziale
 
@@ -91,6 +97,8 @@ docs/vision.md
 6 tasks prompt
    ↓
 7 workflow prompt
+   ↓
+8 activation prompt soft / balanced / autonomous
 ```
 
 `4 design prompt.md` genera `docs/design.md` solo se il progetto prevede frontend, UI o UX.
@@ -147,6 +155,12 @@ docs/vision.md
 - usa docs/decisions.md se presente
 - valida la coerenza della pipeline
 - genera docs/workflow.md per il Document-Driven Workflow
+
+8 activation prompt - soft / balanced / autonomous
+- usa docs/workflow.md come guida principale
+- usa docs/tasks.md come backlog operativo
+- usa tutti gli altri documenti in docs/ come vincoli progettuali
+- avvia lo sviluppo assistito da IA con livello di autonomia soft, balanced o autonomous
 ```
 
 ## Output generati
@@ -190,6 +204,28 @@ Il Document-Driven Workflow:
 - non crea agenti di sviluppo persistenti;
 - guida l'IA nello sviluppo, nella verifica e nell'aggiornamento documentale.
 
+## Avvio dello sviluppo
+
+La generazione di `docs/workflow.md` conclude la fase di progettazione di Project Foundry. Da quel momento il progetto dispone dei documenti necessari per iniziare la fase di implementazione con un coding agent come Codex, Claude Code, Copilot, Gemini CLI o strumenti equivalenti.
+
+Durante lo sviluppo, `docs/workflow.md` è il documento guida dell'intero lavoro: definisce come l'IA deve leggere il contesto, rispettare i vincoli, aggiornare la documentazione, gestire decisioni, verifiche, test e avanzamento. `docs/tasks.md` è il backlog operativo da implementare: contiene ordine di lavoro, stato dei task, dipendenze, criteri di completamento e verifiche attese.
+
+Tutti gli altri documenti in `docs/` costituiscono i vincoli progettuali che il coding agent deve rispettare:
+
+- `docs/requirements.md` definisce il comportamento atteso;
+- `docs/architecture.md` definisce struttura, stack, componenti e pattern;
+- `docs/security.md` definisce guardrail, rischi e controlli;
+- `docs/design.md`, se presente, definisce UI/UX, accessibilità e regole visuali;
+- `docs/decisions.md`, se presente, registra decisioni significative già assunte.
+
+Project Foundry mette a disposizione tre modalità di attivazione, da scegliere in base al controllo desiderato sul lavoro del coding agent:
+
+- `8 activation prompt - soft.md`: per seguire lo sviluppo passo passo. L'IA esegue un solo task alla volta, riepiloga il risultato, propone il task successivo e attende conferma.
+- `8 activation prompt - balanced.md`: per un'autonomia intermedia. L'IA lavora su piccoli gruppi coerenti di task, riepiloga il gruppo completato, propone il gruppo successivo e attende conferma.
+- `8 activation prompt - autonomous.md`: per massima autonomia. L'IA procede fino al completamento del progetto, fermandosi solo davanti a blocchi reali o decisioni che richiedono l'utente.
+
+I prompt `8` non sostituiscono i documenti generati: li attivano come contesto operativo. Il README spiega quando usare ciascuna modalità; il prompt scelto definisce come il coding agent deve comportarsi durante l'implementazione.
+
 ## Decisioni di progetto
 
 `docs/decisions.md` traccia solo decisioni significative emerse durante progetto e sviluppo. Non deve essere creato all'avvio se non esistono decisioni da registrare.
@@ -221,6 +257,7 @@ Ogni documento ha una responsabilità precisa:
 - `docs/tasks.md` definisce roadmap incrementale, ordine di implementazione e stato.
 - `docs/workflow.md` definisce come l'IA deve lavorare.
 - `docs/decisions.md` traccia solo decisioni significative.
+- I prompt `8 activation prompt` avviano lo sviluppo e non modificano la responsabilità dei documenti in `docs/`.
 
 Ogni prompt deve generare esclusivamente il proprio output. Quando un'informazione appartiene a un altro documento, usa un riferimento invece di duplicarla.
 
@@ -235,4 +272,5 @@ Ogni prompt deve generare esclusivamente il proprio output. Quando un'informazio
 7. Esegui `5 security prompt.md`.
 8. Esegui `6 tasks prompt.md`.
 9. Esegui `7 workflow prompt.md`.
-10. Usa i documenti generati in `docs/` come base operativa per lo sviluppo assistito da IA.
+10. Scegli una modalità tra `8 activation prompt - soft.md`, `8 activation prompt - balanced.md` e `8 activation prompt - autonomous.md`.
+11. Avvia il coding agent con il prompt scelto e usa i documenti generati in `docs/` come base operativa per lo sviluppo assistito da IA.
