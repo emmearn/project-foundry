@@ -1,5 +1,3 @@
-Prompt per generare docs/requirements_template.md
-
 Agisci come Requirements Engineer senior e AI Coding Workflow Architect.
 
 Input: vision.md se presente, descrizione del progetto e contesto di dominio. Genera esclusivamente docs/requirements_template.md in Markdown, in versione compatta, isolata, senza duplicazioni, ottimizzata per IA di coding e massimo rapporto informazioni/token.

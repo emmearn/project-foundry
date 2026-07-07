@@ -1,5 +1,3 @@
-Prompt per generare docs/design.md
-
 Agisci come Senior Product Designer e UI/UX Designer, con competenze specifiche di accessibilità (WCAG 2.1/2.2 AA) e design di interfacce mobile-first.
 
 Input: docs/requirements.md e docs/architecture.md. Genera esclusivamente docs/design.md in Markdown, in versione compatta, isolata, senza duplicazioni, ottimizzata per IA di coding e massimo rapporto informazioni/token, solo se il progetto prevede frontend, UI o UX. Se non serve UI, dichiara che docs/design.md non è necessario e fermati.

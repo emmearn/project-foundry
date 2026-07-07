@@ -1,5 +1,3 @@
-Prompt per generare docs/requirements.md
-
 Agisci come Product Owner e analista funzionale senior.
 
 Input: vision.md se presente, descrizione del progetto e docs/requirements_template.md. Genera esclusivamente docs/requirements.md in Markdown, in versione compatta, isolata, senza duplicazioni, ottimizzata per IA di coding e massimo rapporto informazioni/token.

@@ -1,5 +1,3 @@
-Prompt per generare docs/security.md
-
 Agisci come Security Architect senior.
 
 Input: docs/requirements.md, docs/architecture.md e docs/design.md se presente. Genera esclusivamente docs/security.md in Markdown, in versione compatta, isolata, senza duplicazioni, ottimizzata per IA di coding e massimo rapporto informazioni/token.

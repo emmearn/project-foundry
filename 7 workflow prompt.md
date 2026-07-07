@@ -1,5 +1,3 @@
-Prompt per generare docs/workflow.md
-
 Agisci come AI Coding Workflow Architect.
 
 Input: docs/requirements_template.md, docs/requirements.md, docs/architecture.md, docs/security.md, docs/tasks.md, docs/design.md se presente e docs/decisions.md se presente. Genera esclusivamente docs/workflow.md in Markdown, in versione compatta, isolata, senza duplicazioni, ottimizzata per IA di coding e massimo rapporto informazioni/token.

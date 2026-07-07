@@ -1,5 +1,3 @@
-Prompt per generare docs/architecture.md
-
 Agisci come Software Architect senior.
 
 Input: docs/requirements.md. Genera esclusivamente docs/architecture.md in Markdown, in versione compatta, isolata, senza duplicazioni, ottimizzata per IA di coding e massimo rapporto informazioni/token.

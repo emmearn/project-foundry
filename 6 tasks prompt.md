@@ -1,5 +1,3 @@
-Prompt per generare docs/tasks.md
-
 Agisci come Technical Project Manager senior.
 
 Input: docs/requirements.md, docs/architecture.md, docs/security.md e docs/design.md se presente. Genera esclusivamente docs/tasks.md in Markdown, in versione compatta, isolata, senza duplicazioni, ottimizzata per IA di coding e massimo rapporto informazioni/token.
