@@ -1,276 +1,203 @@
 # Project Foundry
 
-Project Foundry è un framework di prompt per trasformare una visione iniziale in documentazione operativa compatta per progetti di vibe coding e sviluppo assistito da IA.
+Project Foundry è un framework di prompt per trasformare una visione iniziale in documentazione operativa e guidare lo sviluppo assistito da IA.
 
-Il repository non contiene codice applicativo: contiene una sequenza ordinata di prompt che genera documenti di progetto coerenti, isolati e ottimizzati per AI coding assistant. Il `README.md` è la guida introduttiva per l'utente umano e non è un prompt da eseguire.
+Il repository non contiene codice applicativo. Contiene sette prompt autosufficienti, pensati per essere eseguiti in ordine tramite copia-incolla con un coding agent. Ogni prompt produce un documento o avvia una fase precisa, senza richiedere template esterni.
 
-## Indice
+## Principi
 
-- [Scopo](#scopo)
-- [Principi fondamentali](#principi-fondamentali)
-- [File del framework](#file-del-framework)
-- [Input iniziale](#input-iniziale)
-- [Ordine di esecuzione](#ordine-di-esecuzione)
-- [Dipendenze tra prompt](#dipendenze-tra-prompt)
-- [Output generati](#output-generati)
-- [Document-Driven Workflow](#document-driven-workflow)
-- [Avvio dello sviluppo](#avvio-dello-sviluppo)
-- [Decisioni di progetto](#decisioni-di-progetto)
-- [Regole di isolamento](#regole-di-isolamento)
-- [Uso rapido](#uso-rapido)
+- Una responsabilità principale per ogni documento.
+- Istruzioni dirette, confini decisionali espliciti e criteri di riuscita verificabili.
+- Assunzioni consentite solo per scelte reversibili e a basso impatto.
+- Chiarimenti richiesti soltanto quando cambiano materialmente il risultato.
+- Documenti compatti, senza duplicazioni o sezioni compilate per completezza.
+- Verifiche proporzionate al rischio e alla modifica.
+- Italiano e UTF-8, salvo richiesta esplicita diversa.
 
-## Scopo
-
-Il framework produce una catena documentale ordinata:
-
-- visione iniziale;
-- template dei requisiti;
-- requisiti;
-- architettura;
-- design UI/UX, se necessario;
-- logo e regole minime di utilizzo, se necessario;
-- sicurezza;
-- task di implementazione;
-- workflow operativo per l'IA.
-
-La documentazione generata diventa la fonte di verità del progetto. Ogni prompt produce un solo documento o gruppo di artefatti e non deve duplicare responsabilità già assegnate ad altri documenti.
-
-## Principi fondamentali
-
-Project Foundry applica una regola di compattezza a tutti i prompt e a tutti i documenti generati:
-
-- alta densità informativa;
-- nessuna ridondanza;
-- nessuna sezione compilata solo per completezza;
-- riferimenti ad altri documenti invece di duplicazioni;
-- una sola fonte di verità per ogni informazione;
-- documenti ottimizzati per IA di coding e massimo rapporto informazioni/token.
-
-Usa italiano e UTF-8 salvo richiesta esplicita diversa.
-
-## File del framework
+## File
 
 ```text
-1 requirements template prompt.md
-2 requirements prompt.md
-3 architecture prompt.md
-4 design prompt.md
-4.1 optional design logo prompt.md
-5 security prompt.md
-6 tasks prompt.md
-7 workflow prompt.md
-8 activation prompt - soft.md
-8 activation prompt - balanced.md
-8 activation prompt - autonomous.md
+01-requirements-prompt.md
+02-architecture-prompt.md
+03-visual-design-optional-prompt.md
+04-security-prompt.md
+05-tasks-prompt.md
+06-workflow-prompt.md
+07-activation-prompt.md
 README.md
 ```
 
-I file numerati da `1` a `7` vanno usati in ordine. Il prompt `4.1 optional design logo prompt.md` è opzionale e va eseguito subito dopo `4 design prompt.md` quando il progetto richiede un logo, brand asset o una identità visiva.
-
-I tre prompt `8 activation prompt` non generano nuovi documenti: servono ad avviare lo sviluppo reale con un coding agent dopo la conclusione della fase di progettazione. Va scelto un solo prompt `8`, in base al livello di autonomia desiderato.
+I numeri rappresentano l'ordine di esecuzione. Il passaggio `03` è opzionale: saltalo quando il progetto non richiede UI, UX, identità visiva, logo o altri asset di brand.
 
 ## Input iniziale
 
-`docs/vision.md` è scritto da esseri umani prima di avviare il framework.
+Prima di eseguire i prompt, crea `docs/vision.md`.
 
-Può contenere l'idea originale in forma libera: obiettivo, contesto, vincoli, desideri, esempi, riferimenti o note grezze.
+La vision può essere scritta liberamente, ma dovrebbe descrivere almeno:
 
-`docs/vision.md` non sostituisce `docs/requirements.md`: è materiale di partenza da cui derivare requisiti e documenti successivi.
+- problema e risultato desiderato;
+- utenti o soggetti interessati;
+- ambito e vincoli già noti;
+- contesto di dominio;
+- eventuali riferimenti o preferenze;
+- se applicabile, stato del progetto esistente e aspetti da preservare o modificare.
+
+`docs/vision.md` è il contesto originario, non la specifica finale. I prompt successivi trasformano la vision in documenti operativi e segnalano le ambiguità che cambierebbero materialmente il risultato.
 
 ## Ordine di esecuzione
 
 ```text
 docs/vision.md
-   ↓
-1 requirements template prompt
-   ↓
-2 requirements prompt
-   ↓
-3 architecture prompt
-   ↓
-4 design prompt opzionale
-   ↓
-4.1 optional design logo prompt opzionale
-   ↓
-5 security prompt
-   ↓
-6 tasks prompt
-   ↓
-7 workflow prompt
-   ↓
-8 activation prompt soft / balanced / autonomous
+      ↓
+01 Requirements
+      ↓
+02 Architecture
+      ↓
+03 Visual design e logo, opzionale
+      ↓
+04 Security
+      ↓
+05 Tasks
+      ↓
+06 Workflow
+      ↓
+07 Activation
 ```
 
-`4 design prompt.md` genera `docs/design.md` solo se il progetto prevede frontend, UI o UX.
+## Prompt e output
 
-`4.1 optional design logo prompt.md` va eseguito solo quando il progetto richiede logo, brand asset o identità visiva. Se eseguito, deve seguire immediatamente `4 design prompt.md` e aggiornare `docs/design.md` con le regole minime di utilizzo del logo ufficiale.
+| Fase | Fonti principali | Output | Note |
+|---|---|---|---|
+| `01 Requirements` | vision e contesto utente | `docs/requirements.md` | Contiene direttamente il template dei requisiti. |
+| `02 Architecture` | vision e requirements | `docs/architecture.md` | Distingue progetto nuovo o esistente dalle fonti e dal repository disponibile. |
+| `03 Visual design` | vision, requirements e architecture | `docs/design.md`, eventuali `assets/logo/` | Eseguire solo quando servono UI, UX o identità visiva. Il logo non viene generato automaticamente per ogni frontend. |
+| `04 Security` | vision, requirements, architecture ed eventuale design | `docs/security.md` | Parte da asset, dati, attori, confini di fiducia e minacce reali. |
+| `05 Tasks` | tutti i documenti progettuali applicabili | `docs/tasks.md` | Produce milestone e task ordinati, osservabili e verificabili. |
+| `06 Workflow` | documenti precedenti ed eventuali decisioni | `docs/workflow.md` | Definisce come il coding agent deve operare durante lo sviluppo. |
+| `07 Activation` | workflow, tasks e documenti pertinenti | codice, test e aggiornamenti previsti dal workflow | Avvia lo sviluppo con il livello di autonomia scelto. |
 
-## Dipendenze tra prompt
+## Documenti generati
 
-```text
-1 requirements template prompt
-- usa docs/vision.md se presente
-- genera docs/requirements_template.md
-
-2 requirements prompt
-- usa docs/vision.md se presente
-- usa docs/requirements_template.md
-- genera docs/requirements.md
-
-3 architecture prompt
-- usa docs/vision.md se presente
-- usa docs/requirements.md
-- genera docs/architecture.md
-
-4 design prompt
-- usa docs/vision.md se presente
-- usa docs/requirements.md
-- usa docs/architecture.md
-- genera docs/design.md solo se il progetto prevede frontend/UI/UX
-
-4.1 optional design logo prompt
-- usa docs/vision.md se presente
-- usa docs/requirements.md
-- usa docs/design.md
-- genera assets/logo/
-- aggiorna docs/design.md con le regole minime di utilizzo del logo ufficiale
-
-5 security prompt
-- usa docs/vision.md se presente
-- usa docs/requirements.md
-- usa docs/architecture.md
-- usa docs/design.md se presente
-- genera docs/security.md
-
-6 tasks prompt
-- usa docs/vision.md se presente
-- usa docs/requirements.md
-- usa docs/architecture.md
-- usa docs/security.md
-- usa docs/design.md se presente
-- genera docs/tasks.md
-
-7 workflow prompt
-- usa tutti i documenti precedenti
-- usa docs/decisions.md se presente
-- valida la coerenza della pipeline
-- genera docs/workflow.md per il Document-Driven Workflow
-
-8 activation prompt - soft / balanced / autonomous
-- usa docs/workflow.md come guida principale
-- usa docs/tasks.md come backlog operativo
-- usa tutti gli altri documenti in docs/ come vincoli progettuali
-- avvia lo sviluppo assistito da IA con livello di autonomia soft, balanced o autonomous
-```
-
-## Output generati
-
-Il framework può generare:
+Il flusso completo può produrre:
 
 ```text
 docs/
-├── vision.md                 # input umano iniziale
-├── requirements_template.md
-├── requirements.md
-├── architecture.md
-├── design.md                 # solo se serve UI/UX/frontend
-├── security.md
-├── tasks.md
-├── workflow.md               # generato dal prompt 7
-└── decisions.md              # creato o aggiornato dall'IA quando serve
+├── vision.md          # input umano
+├── requirements.md    # comportamento atteso
+├── architecture.md    # struttura e scelte tecniche
+├── design.md          # solo se serve una fase visuale
+├── security.md        # rischi, controlli e vincoli
+├── tasks.md           # roadmap e stato del lavoro
+├── workflow.md        # comportamento operativo del coding agent
+└── decisions.md       # creato quando emerge la prima decisione significativa
 
 assets/
-└── logo/                     # solo se si esegue il prompt 4.1
+└── logo/              # solo se logo o identità visiva sono richiesti
 ```
 
-`docs/design.md` viene creato solo se il progetto prevede UI, UX o frontend.
+## Responsabilità dei documenti
 
-`assets/logo/` viene creato solo se viene eseguito `4.1 optional design logo prompt.md`.
+- `vision.md` conserva l'intenzione e il contesto originari.
+- `requirements.md` definisce il comportamento atteso, l'ambito e i criteri di accettazione.
+- `architecture.md` definisce struttura, componenti, dati, integrazioni e convenzioni tecniche.
+- `design.md` definisce esperienza, sistema visuale e uso degli asset quando necessari.
+- `security.md` collega asset e minacce a controlli e verifiche proporzionati.
+- `tasks.md` definisce ordine, dipendenze, completamento e stato del lavoro.
+- `workflow.md` definisce come selezionare il contesto, implementare, verificare e aggiornare i documenti.
+- `decisions.md` conserva decisioni significative e trade-off non ovvi.
 
-`docs/decisions.md` non deve esistere per forza all'avvio: l'IA lo crea alla prima decisione significativa e lo aggiorna durante lo sviluppo.
+I documenti descrivono lo stato desiderato e le decisioni approvate. Il repository mostra lo stato implementato; test e verifiche forniscono evidenza del comportamento osservato. Il workflow stabilisce come gestire eventuali conflitti senza presumere automaticamente che una fonte sia corretta.
 
-## Document-Driven Workflow
+## Fase visuale opzionale
 
-I prompt da `1` a `6` generano la documentazione di progetto.
+Esegui `03-visual-design-optional-prompt.md` quando serve almeno uno dei seguenti elementi:
 
-Il prompt `7 workflow prompt.md` genera sempre il Document-Driven Workflow in `docs/workflow.md`.
+- interfaccia utente;
+- esperienza o flusso UX;
+- sistema visuale;
+- logo o identità di brand;
+- asset grafici ufficiali.
 
-Il framework non crea agenti di sviluppo persistenti. L'AI coding assistant usa `docs/workflow.md` e i documenti in `docs/` come guida operativa, assumendo dinamicamente il ruolo necessario durante il lavoro.
+Il prompt decide gli output applicabili sulla base della vision e dei requisiti:
 
-Il Document-Driven Workflow:
+- UI/UX senza branding: genera soltanto `docs/design.md`;
+- UI/UX con identità visiva richiesta: genera design e asset necessari;
+- solo identità visiva: genera un `docs/design.md` minimale e gli asset supportati;
+- nessuna esigenza visuale: non modifica file e segnala che la fase può essere saltata.
 
-- usa solo documentazione e regole operative compatte;
-- mantiene `docs/` come unica fonte di verità;
-- non crea agenti di sviluppo persistenti;
-- guida l'IA nello sviluppo, nella verifica e nell'aggiornamento documentale.
+## Task e avanzamento
 
-## Avvio dello sviluppo
+`docs/tasks.md` è sia roadmap sia stato corrente del lavoro. Un task è sufficientemente piccolo quando produce un solo risultato osservabile, ha scope e dipendenze chiari e possiede una verifica concreta. Non vengono usate stime temporali per determinare la dimensione dei task.
 
-La generazione di `docs/workflow.md` conclude la fase di progettazione di Project Foundry. Da quel momento il progetto dispone dei documenti necessari per iniziare la fase di implementazione con un coding agent come Codex, Claude Code, Copilot, Gemini CLI o strumenti equivalenti.
+Stati disponibili:
 
-Durante lo sviluppo, `docs/workflow.md` è il documento guida dell'intero lavoro: definisce come l'IA deve leggere il contesto, rispettare i vincoli, aggiornare la documentazione, gestire decisioni, verifiche, test e avanzamento. `docs/tasks.md` è il backlog operativo da implementare: contiene ordine di lavoro, stato dei task, dipendenze, criteri di completamento e verifiche attese.
+```text
+TODO
+IN_PROGRESS
+DONE
+BLOCKED
+DEFERRED
+```
 
-Tutti gli altri documenti in `docs/` costituiscono i vincoli progettuali che il coding agent deve rispettare:
+Un task può diventare `DONE` solo quando criteri di completamento e verifiche applicabili sono soddisfatti.
 
-- `docs/requirements.md` definisce il comportamento atteso;
-- `docs/architecture.md` definisce struttura, stack, componenti e pattern;
-- `docs/security.md` definisce guardrail, rischi e controlli;
-- `docs/design.md`, se presente, definisce UI/UX, accessibilità e regole visuali;
-- `docs/decisions.md`, se presente, registra decisioni significative già assunte.
+## Workflow di sviluppo
 
-Project Foundry mette a disposizione tre modalità di attivazione, da scegliere in base al controllo desiderato sul lavoro del coding agent:
+`06-workflow-prompt.md` genera sempre `docs/workflow.md`. Il workflow non obbliga il coding agent a leggere ogni documento prima di ogni modifica: seleziona il contesto in base al lavoro corrente.
 
-- `8 activation prompt - soft.md`: per seguire lo sviluppo passo passo. L'IA esegue un solo task alla volta, riepiloga il risultato, propone il task successivo e attende conferma.
-- `8 activation prompt - balanced.md`: per un'autonomia intermedia. L'IA lavora su piccoli gruppi coerenti di task, riepiloga il gruppo completato, propone il gruppo successivo e attende conferma.
-- `8 activation prompt - autonomous.md`: per massima autonomia. L'IA procede fino al completamento del progetto, fermandosi solo davanti a blocchi reali o decisioni che richiedono l'utente.
+In generale:
 
-I prompt `8` non sostituiscono i documenti generati: li attivano come contesto operativo. Il README spiega quando usare ciascuna modalità; il prompt scelto definisce come il coding agent deve comportarsi durante l'implementazione.
+- requirements e tasks guidano modifiche funzionali;
+- architecture guida struttura, dati, dipendenze e integrazioni;
+- security guida cambiamenti che coinvolgono privilegi, dati sensibili, input esterni o rischio;
+- design guida UI, UX, componenti e asset visuali;
+- decisions conserva scelte significative già assunte;
+- vision viene consultata quando serve il contesto originario.
+
+Il framework non richiede agenti persistenti. Il coding agent applica durante il lavoro le competenze necessarie alla modifica corrente.
+
+## Attivazione e autonomia
+
+Prima di eseguire `07-activation-prompt.md`, imposta un solo parametro:
+
+```yaml
+autonomy: soft
+```
+
+Valori consentiti:
+
+- `soft`: esegue un task, verifica, aggiorna lo stato e attende conferma;
+- `balanced`: esegue un piccolo gruppo coerente di task, verifica e attende conferma;
+- `autonomous`: prosegue attraverso tutti i task eseguibili e si ferma solo a completamento o davanti a un blocco reale.
+
+Il parametro è obbligatorio. Non esistono altri parametri di avanzamento: unità di lavoro e punto di arresto derivano direttamente dalla modalità scelta.
 
 ## Decisioni di progetto
 
-`docs/decisions.md` traccia solo decisioni significative emerse durante progetto e sviluppo. Non deve essere creato all'avvio se non esistono decisioni da registrare.
+`docs/decisions.md` non deve esistere all'avvio. Viene creato quando emerge la prima decisione significativa, non per scelte locali o facilmente reversibili.
 
-Formato minimo consigliato:
+Formato minimo:
 
 ```text
 DEC-001
 - Data:
-- Stato: Proposed/Accepted/Superseded/Deprecated
+- Stato: Proposed | Accepted | Superseded | Deprecated
 - Contesto:
 - Decisione:
 - Motivazione:
 - Alternative considerate:
 - Impatto:
-- Collegamenti: requisiti, task, documenti o rischi collegati
+- Collegamenti:
 ```
-
-## Regole di isolamento
-
-Ogni documento ha una responsabilità precisa:
-
-- `docs/vision.md` contiene solo l'input umano iniziale.
-- `docs/requirements_template.md` definisce solo lo standard dei requisiti.
-- `docs/requirements.md` definisce cosa deve fare il sistema.
-- `docs/architecture.md` definisce come è costruito il sistema.
-- `docs/design.md` definisce UI/UX e regole minime di uso del logo solo se necessarie.
-- `docs/security.md` definisce guardrail, policy e rischi.
-- `docs/tasks.md` definisce roadmap incrementale, ordine di implementazione e stato.
-- `docs/workflow.md` definisce come l'IA deve lavorare.
-- `docs/decisions.md` traccia solo decisioni significative.
-- I prompt `8 activation prompt` avviano lo sviluppo e non modificano la responsabilità dei documenti in `docs/`.
-
-Ogni prompt deve generare esclusivamente il proprio output. Quando un'informazione appartiene a un altro documento, usa un riferimento invece di duplicarla.
 
 ## Uso rapido
 
-1. Crea `docs/vision.md` con la visione iniziale del progetto.
-2. Esegui `1 requirements template prompt.md`.
-3. Esegui `2 requirements prompt.md`.
-4. Esegui `3 architecture prompt.md`.
-5. Esegui `4 design prompt.md` solo se il progetto richiede frontend, UI o UX.
-6. Esegui `4.1 optional design logo prompt.md` solo se serve logo, brand asset o identità visiva.
-7. Esegui `5 security prompt.md`.
-8. Esegui `6 tasks prompt.md`.
-9. Esegui `7 workflow prompt.md`.
-10. Scegli una modalità tra `8 activation prompt - soft.md`, `8 activation prompt - balanced.md` e `8 activation prompt - autonomous.md`.
-11. Avvia il coding agent con il prompt scelto e usa i documenti generati in `docs/` come base operativa per lo sviluppo assistito da IA.
+1. Crea `docs/vision.md`.
+2. Esegui `01-requirements-prompt.md`.
+3. Esegui `02-architecture-prompt.md`.
+4. Esegui `03-visual-design-optional-prompt.md` se il progetto richiede una fase visuale.
+5. Esegui `04-security-prompt.md`.
+6. Esegui `05-tasks-prompt.md`.
+7. Esegui `06-workflow-prompt.md`.
+8. Imposta `autonomy` in `07-activation-prompt.md`.
+9. Esegui il prompt di attivazione per iniziare lo sviluppo.
